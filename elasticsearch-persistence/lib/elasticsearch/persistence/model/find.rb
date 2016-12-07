@@ -117,11 +117,12 @@ module Elasticsearch
 
             body = options
 
+            body[:sort] = ["_doc"]
+
             # Get the initial scroll_id
             #
             response = gateway.client.search( { index: gateway.index_name,
                                          type:  gateway.document_type,
-                                         search_type: 'scan',
                                          scroll:      scroll,
                                          size:        20,
                                          body:        body }.merge(search_params) )
